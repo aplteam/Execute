@@ -1,0 +1,13 @@
+ R←Test_020(stopFlag batchFlag);⎕TRAP;cs;rc;processInfo;result;more;cmd;home
+⍝ Runs a program with ""##.Execute.Application"" that won't come back and set the "timeoutAfter" parameter
+ R←∆Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ cs←##.Execute.DefaultParms
+ cs.timeoutAfter←5
+ home←GetRootFile
+ cmd←home,'SleepFor_Seconds.bat 10'
+ (rc processInfo result more)←cs ##.Execute.Application cmd
+ →FailsIf'Timeout after 5 seconds'≢(⎕IO+1)⊃more
+
+ R←∆OK

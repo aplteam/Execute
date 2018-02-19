@@ -1,0 +1,12 @@
+ R←Test_017(stopFlag batchFlag);cmd;rc;result;ERROR_DIRECTORY;execIn;exitCode;⎕TRAP
+⍝ Test expand on the directory
+ R←∆Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ cmd←'cmd' 'dir etc' 'exit 9'
+ execIn←'%WinDir%\system32\drivers\'
+ (rc result exitCode)←execIn ##.Execute.Process cmd
+ result,¨←' '
+ →FailsIf~(rc=0)∧(exitCode=9)∧1=+/∨/' hosts '⍷↑,/result
+
+ R←∆OK

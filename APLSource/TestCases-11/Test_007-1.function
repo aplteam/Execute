@@ -1,0 +1,17 @@
+ R←Test_007(stopFlag batchFlag);cmd;parms;rc;processInfo;result;more;home;⎕TRAP
+⍝ Text expand on the exe
+ R←∆Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ home←GetRootFile
+ cmd←'expand'#.FilesAndDirs.NormalizePath home,'test.bat'
+ cmd,←' 100'
+ parms←##.Execute.DefaultParms
+ parms.wait←1
+ parms.hidden←0
+ parms.dir←home
+ (rc processInfo result more)←parms ##.Execute.Application cmd
+ →FailsIf 0≠rc
+ →FailsIf result≢128            ⍝ 128 is what the bat returns
+
+ R←∆OK

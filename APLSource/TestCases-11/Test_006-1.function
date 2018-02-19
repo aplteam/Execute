@@ -1,0 +1,14 @@
+ R←Test_006(stopFlag batchFlag);cmd;parms;rc;processInfo;result;more;⎕TRAP
+⍝ Tries to start a non-existing program
+⍝ In other words, this is supposed to fail!
+ R←∆Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ cmd←'nonexisten.exe'
+ parms←##.Execute.DefaultParms
+ parms.wait←1
+ parms.hidden←1
+ (rc processInfo result more)←parms ##.Execute.Application cmd
+ →FailsIf(2≠rc)∨⍬≢result
+
+ R←∆OK

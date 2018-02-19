@@ -1,0 +1,10 @@
+ R←Test_014(stopFlag batchFlag);cmd;rc;result;ERROR_DIRECTORY;exitCode;⎕TRAP
+⍝ Same as 11 but we specify an unknown directory
+ R←∆Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ cmd←'cmd' 'Dir ThisCertainlyDoesNotExist\Really\' 'Exit 9'
+ (rc result exitCode)←##.Execute.Process cmd
+ →FailsIf~(rc=0)∧(exitCode=9)∧1=+/∨/¨'The system cannot find the path specified.'∘⍷¨result
+
+ R←∆OK

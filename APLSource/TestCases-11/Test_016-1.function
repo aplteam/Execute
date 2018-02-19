@@ -1,0 +1,13 @@
+ R←Test_016(stopFlag batchFlag);cmd;rc;result;ERROR_DIRECTORY;list;exitCode;⎕TRAP;home
+⍝ Test expand on the exe
+ R←∆Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ home←GetRootFile
+ cmd←'%WinDir%\system32\cmd.exe'('dir ',home,'TestDir')'exit 9'
+ (rc result exitCode)←##.Execute.Process cmd
+ list←' tmp1.txt ' ' tmp2222.txt ' ' tmp33.txt ' ' ?????????? ???.txt '  ⍝ CMD does not do Unicode!!
+ result,¨←' '
+ →FailsIf~(rc=0)∧(exitCode=9)∧4=+/∨/¨list⍷¨⊂↑,/result
+
+ R←∆OK

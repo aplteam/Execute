@@ -1,0 +1,15 @@
+ R←Test_012(stopFlag batchFlag);cmd;rc;result;list;execIn;exitCode;⎕TRAP;home
+⍝ Same as 11 but rather then specifying the directory we use the optional left argument
+⍝ in order to execute the console app inside that directory
+ R←∆Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ home←GetRootFile
+ cmd←'cmd' 'Dir' 'Exit 9'
+ execIn←home,'TestDir'
+ (rc result exitCode)←execIn ##.Execute.Process cmd
+ list←' tmp1.txt ' ' tmp2222.txt ' ' tmp33.txt ' ' ?????????? ???.txt '  ⍝ CMD does not do Unicode!!
+ result,¨←' '
+ →FailsIf~(rc=0)∧(exitCode=9)∧4=+/∨/¨list⍷¨⊂↑,/result
+
+ R←∆OK

@@ -1,0 +1,5 @@
+ r←Version
+ r←'Execute_TestCases' '1.1.1' '2014-10-13'
+⍝ 1.1.1: * "QuadVars" was buggy: ⎕IO←1 arther than ##.⎕IO←1
+⍝ 1.1.0: * "Version" function introduced
+⍝        * Test_020 failed becasue of a ⎕IO problem, therefore QuadVars was introduced
