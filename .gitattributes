@@ -1,8 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 *.dyalog linguist-language=APL
-APLSource/ linguist-vendored=false
+APLSource/ linguist-vendored=true
 Dest/ linguist-vendored=false
 Make/ linguist-vendored=false
 Tests/ linguist-vendored=false
-*.dyalog/ linguist-vendored=true
