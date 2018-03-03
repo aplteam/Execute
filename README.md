@@ -12,7 +12,7 @@
 
 * `Process` lets you spawn a new process and return its standard output when it's finished.
 
-Use `Application` in order to run a program or a batch file when you are not in need for its output. A typical example is firing up another instance of Dyalog APL. Use `Process` if you need the output of a certain program. A typical example would be the !SubVersion "svn list" command.
+Use `Application` in order to run a program or a batch file when you are not in need for its output. A typical example is firing up another instance of Dyalog APL. Use `Process` if you need the output of a certain program. A typical example would be the SubVersion "svn list" command.
 
 Naturally `Process` waits for the program to quit. `Application` doesn't wait by default but you can change that default behaviour. If you do you will get the exit code of that application, if there is any. A return code can be returned by a Dyalog app with
 
@@ -141,9 +141,9 @@ The `Process` method is designed to return whatever the called program is going 
 
 The following example would work in case the following preconditions are full-filled:
 
- * You have a !SubVersion client installed on your machine.
+ * You have a SubVersion client installed on your machine.
  * You have access to the Internet.
- * The path to the !SubVersion executable is contained on the Windows environment variable "PATH".
+ * The path to the SubVersion executable is contained on the Windows environment variable "PATH".
 
 ```
       path←'aplwiki.com/os/dyalog/IniFiles/branches/'
