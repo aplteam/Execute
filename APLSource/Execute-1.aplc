@@ -51,16 +51,8 @@
       :Access Public Shared
     ⍝ * 1.9.0
     ⍝   * First version after conversion from the APL wiki to GitHub.
-    ⍝ * 1.8.1
-    ⍝   * Glitches in the documentation fixed.
-    ⍝ * 1.8.0
-    ⍝   * Method `History` polished.
-    ⍝   * Now managed by acre 3.
-    ⍝ * 1.7.1
-    ⍝   * Syntax fix for new version of `FilesAndDirs`.
-    ⍝ * 1.7.0
-    ⍝   * Now requires at least Dyalog 15.0 Unicode
-    ⍝   * Uses `FilesAndDirs` rather than `WinFile`.
+    ⍝\\
+    ⍝ For information regarding older versions see <https://github.com/aplteam/Execute/releases>
     ∇
 
     ∇ {(rc processInfo result more)}←{cs}Application program;⎕IO;⎕ML;NORMAL_PRIORITY_CLASS;nl;bool;startupInfo;processHandle;threadHandle;StillActive;Ctrl_C_Is;ProcessAborted;i;∆CreateProcess;∆GetCurrentDirectory;∆GetExitCodeProcess;∆GetExitCodeThread;∆WaitForSingleObject;∆TerminateProcess;∆TerminateThread
