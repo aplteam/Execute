@@ -1,4 +1,0 @@
- Initial
- #.Tester.EstablishHelpersIn ⍬
- Cleanup
- #.APLTreeUtils.WriteUtf8File(GetRootFile,'TestDir/Здравствуй мир.txt')'stuff'

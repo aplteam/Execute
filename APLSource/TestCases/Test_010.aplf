@@ -1,0 +1,15 @@
+ R←Test_010(stopFlag batchFlag);cmd;rc;result;exitCode;⎕TRAP
+⍝ This test will only succeed when there is a SubVersion client installed on
+⍝ the current machine and SVN is on the PATH variable and there is access
+⍝ to the Internet. It gets a list of files from one of the projects in the
+⍝ APLAPL Open Source project on the APL Wiki.
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+⍝ *** This test is inactive: SubVersion does not run any longer on the APL Wiki
+⍝⍝⍝cmd←'svn list svn://aplwiki.com/os/dyalog/IniFiles/branches/'
+⍝⍝⍝ (rc result exitCode)←##.Execute.Process cmd
+⍝⍝⍝   ⍝ We compare only the first 5 because we don't know what has happened since:
+⍝⍝⍝ →T.FailsIf~(rc=0)∧(exitCode=0)∧(5↑result)≡'RB-1.6/' 'RB-1.6.2/' 'RB-1.6.3/' 'RB-1.7.0/' 'RB-1.7.1/'
+
+ R←T._OK

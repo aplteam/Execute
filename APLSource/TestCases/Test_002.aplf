@@ -1,0 +1,26 @@
+ R←Test_002(stopFlag batchFlag);cmd;parms;caption;name;rc;result;processInfo;more;⎕TRAP;home
+⍝ Same as Test_001 but we wait until the started app has quit itself.
+⍝ As a result the component file created by that app (and deleted as well) must not exist when we check it.
+⍝ Note that the session window is visible because the app prints to it.
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ cmd←(#.GetEnvironment'Dyalog'),'\dyalog.exe '
+ cmd,←' DLGTEST.dws'
+ caption←(,'G<9999-99-99 99:99:99>'⎕FMT 100⊥6↑⎕TS),' ',⎕AN
+ home←GetRootFile
+ cmd,←' ',home,'DLGTEST.dws caption="',caption,'" '
+ :If 0
+     cmd,←'delay=60 '             ⍝ in seconds until dialogue quits itself (default is 10 sec)
+ :EndIf
+ cmd,←'dir="',##.FilesAndDirs.PWD,'\',home,'" '
+ parms←##.Execute.DefaultParms
+ parms.wait←1
+ parms.hidden←0
+ (rc processInfo result more)←parms ##.Execute.Application cmd
+ →T.FailsIf 0≠rc
+ →T.FailsIf~(,129)≡,result
+ name←{b←' '=w←⍵ ⋄ (b/w)←'_' ⋄ ((':'=w)/w)←'_' ⋄ w}caption
+ R←##.FilesAndDirs.Exists home,name,'.dcf'
+
+ R←T._OK

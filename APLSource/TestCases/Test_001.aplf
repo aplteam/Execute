@@ -1,0 +1,52 @@
+ R←Test_001(stopFlag batchFlag);cmd;parms;caption;name;fno;flag;rc;processInfo;result;more;⎕TRAP;home
+⍝ Fires up Dyalog APL & loads a workspace DLGTEST which then creates a component file
+⍝ (exclusively tied) and shows a dialog. That app is allowed to run as long as it wants,
+⍝ and to have it's own Window.
+⍝ The test case tries to tie the very same component file. When that
+⍝ does not fail (because the app was closed down by a human being by then) the file is
+⍝ checked for existing. If it doesn't that's supposed to be fine because the DLGTEST ws
+⍝ will delete that component file before exiting.
+⍝ That's supposed to work because the dialogue displayed by DLGTEST is shutdown down
+⍝ by a timer aftyer some time.
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ cmd←(#.GetEnvironment'Dyalog'),'\dyalog.exe '
+ caption←(,'G<9999-99-99 99:99:99>'⎕FMT 100⊥6↑⎕TS),' ',⎕AN
+ home←GetRootFile
+ cmd,←' ',home,'DLGTEST.dws '
+ :If 0
+     cmd,←'delay=60 '             ⍝ in seconds until dialog quits itself (default is 10 sec)
+ :EndIf
+ cmd,←'caption="',caption,'" '
+ cmd,←'dir="',##.FilesAndDirs.PWD,'\',home,'" '
+ parms←##.Execute.DefaultParms
+ parms.wait←0
+ parms.hidden←0
+ parms.dir←##.FilesAndDirs.PWD
+ name←{b←' '=w←⍵ ⋄ (b/w)←'_' ⋄ ((':'=w)/w)←'_' ⋄ w}caption
+ ##.FilesAndDirs.DeleteFile home,name
+ (rc processInfo result more)←parms ##.Execute.Application cmd
+ →T.FailsIf 0≠rc
+ flag←0
+ :Repeat
+     :If 0=flag←##.FilesAndDirs.Exists home,name,'.dcf'
+         ⎕DL 0.2
+     :EndIf
+ :Until flag
+
+ flag←0
+ :Repeat
+     :Trap 19 22 24
+         fno←name ⎕FTIE 0
+         flag←1
+     :Case 22
+         R←##.FilesAndDirs.Exists home,name,'.dcf'
+         flag←1
+     :Case 24
+         ⎕DL 2
+     :EndTrap
+ :Until flag
+
+ :Trap 0 ⋄ ⎕FUNTIE fno ⋄ :EndTrap
+ R←T._OK

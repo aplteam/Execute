@@ -1,0 +1,12 @@
+ R←Test_013(stopFlag batchFlag);cmd;rc;result;execIn;ERROR_DIRECTORY;exitCode;⎕TRAP
+⍝ Same as 11 but we specify an unknown directory
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ cmd←'cmd' 'Dir' 'Exit 9'
+ execIn←'C:\ThisCertainlyDoesNotExist\Really\'
+ (rc result exitCode)←execIn ##.Execute.Process cmd
+ ERROR_DIRECTORY←267
+ →T.FailsIf~(rc=ERROR_DIRECTORY)∧(exitCode=¯1)∧result≡0⍴⊂''
+
+ R←T._OK

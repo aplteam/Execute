@@ -1,0 +1,10 @@
+ R←Test_015(stopFlag batchFlag);cmd;rc;result;ERROR_DIRECTORY;exitCode;⎕TRAP
+⍝ Here we execute a non-existing application
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ cmd←'ThisCertainlyDoesNotExist\ReallyNot\ReallyNot.exe'
+ (rc result exitCode)←##.Execute.Process cmd
+ →T.FailsIf~(rc=2)∧(exitCode=¯1)∧result≡0⍴⊂''
+
+ R←T._OK

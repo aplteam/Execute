@@ -1,0 +1,11 @@
+ R←Test_019(stopFlag batchFlag);cmd;rc;result;exitCode;⎕TRAP
+⍝ Tries to start a non-existing program
+⍝ In other words, this is supposed to fail!
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ cmd←'nonexisten.exe'
+ (rc result exitCode)←##.Execute.Process cmd
+ →T.FailsIf~(2=rc)∨¯1=exitCode
+
+ R←T._OK

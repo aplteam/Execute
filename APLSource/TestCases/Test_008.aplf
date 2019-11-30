@@ -1,0 +1,14 @@
+ R←Test_008(stopFlag batchFlag);cmd;parms;rc;processInfo;result;more;⎕TRAP
+⍝ Text expand on the exe
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ cmd←'%WinDir%\system32\attrib'
+ parms←##.Execute.DefaultParms
+ parms.wait←1
+ parms.hidden←0
+ (rc processInfo result more)←parms ##.Execute.Application cmd
+ →T.FailsIf 0≠rc
+ →T.FailsIf 0≢result
+
+ R←T._OK

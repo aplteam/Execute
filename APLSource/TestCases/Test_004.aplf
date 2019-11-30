@@ -1,0 +1,15 @@
+ R←Test_004(stopFlag batchFlag);cmd;parms;rc;processInfo;result;more;⎕TRAP;home
+⍝ This time we execute test.bat. We wait for the result and allow the console to pop up a window
+ R←T._Failed
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+
+ home←GetRootFile
+ cmd←home,'test.bat 200'
+ parms←##.Execute.DefaultParms
+ parms.wait←1
+ parms.hidden←0
+ (rc processInfo result more)←parms ##.Execute.Application cmd
+ →T.FailsIf 0≠rc
+ →T.FailsIf(,128)≢,result     ⍝ 128 is what the bat is returning
+
+ R←T._OK
