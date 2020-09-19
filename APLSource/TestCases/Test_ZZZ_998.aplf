@@ -5,7 +5,7 @@
  R←T._OK
  report←''
 
- xml←⎕XML'flat'##.APLTreeUtils.ReadUtf8File'publish.config'
+ xml←⎕XML↑⎕NGET'publish.config'
  source←2⊃xml[xml[;1]⍳⊂'container';]
  buff←T.FindSpecialString'⍝CHECK⍝'
  buff←(buff[;0]≢¨⎕XSI[0])⌿buff ⍝ remove caller
