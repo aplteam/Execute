@@ -1,4 +1,4 @@
-:Class Execute		
+:Class Execute
 ⍝ This class allows you two different things:
 ⍝ * Start a process and catch its return code.
 ⍝ * Start an application and catch its standard output.\\
@@ -31,11 +31,14 @@
 
     ∇ r←Version
       :Access Public shared
-      r←'Execute' '3.0.0.7' '2020-09-19'
+      r←'Execute' '3.0.1.8' '2020-09-21'
     ∇
 
     ∇ History
       :Access Public Shared
+    ⍝ * 3.0.1
+    ⍝   * The script delivered with 3.0.0 (and earlier versions as well) carried two <TAB> characters
+    ⍝     at the end of the first line, causing potentially trouble.
     ⍝ * 3.0.0
     ⍝   * BREAKING CHANGES:
     ⍝     * Requires at least Dyalog 18.0
