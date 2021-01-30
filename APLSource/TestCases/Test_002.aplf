@@ -13,7 +13,7 @@
  :If 0
      cmd,←'delay=60 '             ⍝ in seconds until dialogue quits itself (default is 10 sec)
  :EndIf
- cmd,←'dir="',##.FilesAndDirs.PWD,'\',home,'" '
+ cmd,←'dir="',FilesAndDirs.PWD,'\',home,'" '
  parms←##.Execute.DefaultParms
  parms.wait←1
  parms.hidden←0
@@ -21,6 +21,6 @@
  →T.FailsIf 0≠rc
  →T.FailsIf~(,129)≡,result
  name←{b←' '=w←⍵ ⋄ (b/w)←'_' ⋄ ((':'=w)/w)←'_' ⋄ w}caption
- R←##.FilesAndDirs.Exists home,name,'.dcf'
+ R←FilesAndDirs.Exists home,name,'.dcf'
 
  R←T._OK

@@ -19,18 +19,18 @@
      cmd,←'delay=60 '             ⍝ in seconds until dialog quits itself (default is 10 sec)
  :EndIf
  cmd,←'caption="',caption,'" '
- cmd,←'dir="',##.FilesAndDirs.PWD,'\',home,'" '
+ cmd,←'dir="',FilesAndDirs.PWD,'\',home,'" '
  parms←##.Execute.DefaultParms
  parms.wait←0
  parms.hidden←0
- parms.dir←##.FilesAndDirs.PWD
+ parms.dir←FilesAndDirs.PWD
  name←{b←' '=w←⍵ ⋄ (b/w)←'_' ⋄ ((':'=w)/w)←'_' ⋄ w}caption
- ##.FilesAndDirs.DeleteFile home,name
+ FilesAndDirs.DeleteFile home,name
  (rc processInfo result more)←parms ##.Execute.Application cmd
  →T.FailsIf 0≠rc
  flag←0
  :Repeat
-     :If 0=flag←##.FilesAndDirs.Exists home,name,'.dcf'
+     :If 0=flag←FilesAndDirs.Exists home,name,'.dcf'
          ⎕DL 0.2
      :EndIf
  :Until flag
@@ -41,7 +41,7 @@
          fno←name ⎕FTIE 0
          flag←1
      :Case 22
-         R←##.FilesAndDirs.Exists home,name,'.dcf'
+         R←FilesAndDirs.Exists home,name,'.dcf'
          flag←1
      :Case 24
          ⎕DL 2

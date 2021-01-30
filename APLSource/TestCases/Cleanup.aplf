@@ -1,2 +1,2 @@
  Cleanup
- ##.FilesAndDirs.DeleteFile GetRootFile,'TestDir/Здравствуй мир.txt'
+ FilesAndDirs.DeleteFile GetRootFile,'TestDir/Здравствуй мир.txt'

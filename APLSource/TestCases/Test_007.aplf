@@ -4,7 +4,7 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
 
  home←GetRootFile
- cmd←'expand'##.FilesAndDirs.NormalizePath home,'test.bat'
+ cmd←'expand'FilesAndDirs.NormalizePath home,'test.bat'
  cmd,←' 100'
  parms←##.Execute.DefaultParms
  parms.wait←1
