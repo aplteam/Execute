@@ -1,2 +1,2 @@
  r←GetRootFile
- r←'Tests\'
+ r←FilesAndDirs.NormalizePath ##.CiderConfig.HOME, 'Tests\'

@@ -13,7 +13,7 @@
  :EndIf
  caption←(,'G<9999-99-99 99:99:99>'⎕FMT 100⊥6↑⎕TS),' ',⎕AN
  cmd,←' ',home,'DLGTEST.dws caption="',caption,'" '
- cmd,←'dir="',FilesAndDirs.PWD,'\',home,'" '
+ cmd,←'dir="',home,'" '
  parms←##.Execute.DefaultParms
  parms.wait←1
  parms.hidden←1

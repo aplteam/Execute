@@ -19,11 +19,11 @@
      cmd,←'delay=60 '             ⍝ in seconds until dialog quits itself (default is 10 sec)
  :EndIf
  cmd,←'caption="',caption,'" '
- cmd,←'dir="',FilesAndDirs.PWD,'\',home,'" '
+ cmd,←'dir="',home,'" '
  parms←##.Execute.DefaultParms
  parms.wait←0
  parms.hidden←0
- parms.dir←FilesAndDirs.PWD
+ parms.dir←##.CiderConfig.HOME
  name←{b←' '=w←⍵ ⋄ (b/w)←'_' ⋄ ((':'=w)/w)←'_' ⋄ w}caption
  FilesAndDirs.DeleteFile home,name
  (rc processInfo result more)←parms ##.Execute.Application cmd
