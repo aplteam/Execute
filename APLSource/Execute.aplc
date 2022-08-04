@@ -31,7 +31,7 @@
 
     ∇ r←Version
       :Access Public shared
-      r←'Execute' '3.0.2+18' '2021-03-02'
+      r←'Execute' '3.0.2+19' '2021-03-02'
     ∇
 
     ∇ History
