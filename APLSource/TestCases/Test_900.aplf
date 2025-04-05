@@ -1,0 +1,12 @@
+ R←Test_900(stopFlag batchFlag);⎕IO;⎕ML;⎕TRAP;version
+⍝ Execises the `Version` function
+ ⎕IO←0 ⋄ ⎕ML←3
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._OK
+
+ version←##.Execute.Version
+ →T.PassesIf 1=≡version
+ →T.PassesIf' '=1↑0⍴version
+ →T.PassesIf∧/⎕D∊⍨{⍵↑⍨⌊/⍵⍳'+-'}version~' .'
+
+⍝Done
